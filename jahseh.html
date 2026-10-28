@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kennard Cleint M. Azarcon | Cosmic Void Portfolio & Case Studies</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        void: {
+                            black: '#000000',
+                            pitch: '#030303',
+                            dark: '#080808',
+                            card: '#0d0d0d',
+                            border: '#1f1f1f',
+                            lightBg: '#fafafa',
+                            lightCard: '#ffffff',
+                            lightBorder: '#e5e5e5'
+                        }
+                    },
+                    fontFamily: {
+                        display: ['Unbounded', 'Orbitron', 'Syne', 'sans-serif'],
+                        syne: ['Syne', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                        inter: ['Inter', 'sans-serif']
+                    },
+                    letterSpacing: {
+                        ultra: '0.25em',
+                        mega: '0.4em'
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'spin-slow': 'spin 30s linear infinite',
+                        'scanline': 'scanline 6s linear infinite'
+                    },
+                    keyframes: {
+                        scanline: {
+                            '0%': { transform: 'translateY(-100%)' },
+                            '100%': { transform: 'translateY(1000%)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Three.js for Cinematic Blackhole WebGL -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&family=Orbitron:wght@800;900&family=Syne:wght@700;800;900&family=Unbounded:wght@800;900&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS File -->
+    <link rel="stylesheet" href="jah.css">
+</head>
+<body class="bg-void-black text-white light:bg-void-lightBg light:text-black transition-colors duration-300 antialiased selection:bg-white selection:text-black light:selection:bg-black light:selection:text-white">
+
+    <!-- ==================== CINEMATIC BLACKHOLE INTRO OVERLAY ==================== -->
+    <div id="intro-overlay" class="flex flex-col items-center justify-center overflow-hidden">
+        <canvas id="blackhole-intro-canvas" class="absolute inset-0 w-full h-full cursor-grab active:cursor-grabbing"></canvas>
+        
+        <div class="relative z-10 text-center px-6 max-w-4xl pointer-events-none select-none">
+            <div class="inline-block mb-4 px-4 py-1.5 rounded-full border border-white/20 bg-black/60 backdrop-blur-md text-white/80 text-[11px] font-mono tracking-ultra uppercase">
+                <i class="fa-solid fa-circle-dot mr-2 text-xs text-white animate-pulse"></i> FSUU CITEC • BSIT SINGULARITY
+            </div>
+
+            <h1 class="text-3xl sm:text-6xl md:text-7xl font-border-wide tracking-tight text-white mb-2 uppercase text-void-glow leading-tight">
+                KENNARD CLEINT <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-400 to-white">M. AZARCON</span>
+            </h1>
+
+            <p class="text-neutral-400 text-xs sm:text-sm font-mono mb-8 tracking-widest max-w-2xl mx-auto uppercase">
+                BS Information Technology • Father Saturnino Urios University
+            </p>
+            
+            <button id="enter-btn" class="pointer-events-auto group relative inline-flex items-center justify-center px-10 py-4 font-syne font-extrabold text-xs tracking-ultra text-black bg-white rounded-full transition-all duration-300 shadow-[0_0_30px_rgba(255,255,255,0.4)] hover:shadow-[0_0_50px_rgba(255,255,255,0.8)] hover:scale-105 active:scale-95 cursor-pointer">
+                <span class="relative flex items-center gap-3">
+                    <i class="fa-solid fa-atom text-sm group-hover:rotate-180 transition-transform duration-700"></i> ENTER VOID
+                </span>
+            </button>
+        </div>
+
+        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-neutral-500 text-[10px] font-mono tracking-ultra uppercase text-center pointer-events-none">
+            [ Drag to rotate accretion disk • Interactive Gravitational Radius ]
+        </div>
+    </div>
+
+    <!-- ==================== HEADER NAVBAR ==================== -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-black/80 light:bg-white/80 backdrop-blur-md border-b border-white/10 light:border-black/10 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-full bg-white light:bg-black text-black light:text-white flex items-center justify-center font-syne font-black text-lg tracking-tighter group-hover:scale-105 transition-transform shadow-md">
+                    KA
+                </div>
+                <div>
+                    <span class="font-border-wide text-xs sm:text-sm tracking-widest block leading-none text-white light:text-black">
+                        AZARCON<span class="text-neutral-500">.VOID</span>
+                    </span>
+                    <span class="text-[9px] font-mono text-neutral-400 light:text-neutral-600 tracking-wider block mt-0.5">FSUU CITEC BSIT</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-8 font-mono text-xs tracking-widest uppercase text-neutral-300 light:text-neutral-700">
+                <a href="#about" class="hover:text-white light:hover:text-black transition-colors">About</a>
+                <a href="#achievement" class="hover:text-white light:hover:text-black transition-colors flex items-center gap-2">
+                    Keyboard Clash
+                    <span class="bg-white/10 light:bg-black/10 text-white light:text-black text-[9px] px-2 py-0.5 rounded-full font-bold">2nd Place</span>
+                </a>
+                <a href="#case-studies" class="hover:text-white light:hover:text-black transition-colors">Case Studies</a>
+                <a href="#skills" class="hover:text-white light:hover:text-black transition-colors">Stack</a>
+                <a href="#contact" class="hover:text-white light:hover:text-black transition-colors">Contact</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="flex items-center gap-3">
+                <button id="theme-toggle" type="button" aria-label="Toggle Theme" class="relative inline-flex items-center justify-center p-3 rounded-full border border-white/20 light:border-black/20 bg-black light:bg-white text-white light:text-black hover:scale-105 transition-all focus:outline-none shadow-md group cursor-pointer">
+                    <i id="theme-icon-dark" class="fa-solid fa-gear text-sm group-hover:rotate-90 transition-transform duration-500"></i>
+                    <i id="theme-icon-light" class="fa-solid fa-gear text-sm hidden group-hover:rotate-90 transition-transform duration-500"></i>
+                </button>
+
+                <button id="mobile-menu-btn" class="md:hidden p-2.5 rounded-xl border border-white/20 light:border-black/20 text-white light:text-black cursor-pointer">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black/95 light:bg-white/95 border-b border-white/10 light:border-black/10 px-6 py-6 space-y-4 font-mono text-xs tracking-widest uppercase">
+            <a href="#about" class="block text-neutral-300 light:text-neutral-700 py-1">About</a>
+            <a href="#achievement" class="block text-neutral-300 light:text-neutral-700 py-1">2nd Place Winner</a>
+            <a href="#case-studies" class="block text-neutral-300 light:text-neutral-700 py-1">Case Studies</a>
+            <a href="#skills" class="block text-neutral-300 light:text-neutral-700 py-1">Stack</a>
+            <a href="#contact" class="block text-neutral-300 light:text-neutral-700 py-1">Contact</a>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main class="relative z-10">
+
+        <!-- HERO SECTION -->
+        <section id="about" class="relative min-h-[90vh] flex items-center justify-center pt-28 pb-16 overflow-hidden border-b border-white/10 light:border-black/10">
+            <!DOCTYPE html>
+            <canvas id="hero-void-canvas" class="absolute inset-0 w-full h-full opacity-40 light:opacity-20 pointer-events-none"></canvas>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/20 light:border-black/20 bg-black/50 light:bg-white/50 text-neutral-300 light:text-neutral-700 text-xs font-mono tracking-widest uppercase">
+                            <span class="w-2 h-2 rounded-full bg-white light:bg-black animate-ping"></span>
+                            BSIT Student • Father Saturnino Urios University
+                        </div>
+
+                        <h1 class="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-border-wide uppercase leading-none tracking-tight text-white light:text-black">
+                            KENNARD CLEINT <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-400 to-white">M. AZARCON</span>
+                        </h1>
+
+                        <p class="text-sm sm:text-base text-neutral-400 light:text-neutral-600 font-mono tracking-wide max-w-2xl mx-auto lg:mx-0">
+                            First-year BS Information Technology (BSIT) student at FSUU CITEC. Passionate about software architecture, high-speed typing benchmarks, and interactive web engineering.
+                        </p>
+
+                        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+                            <a href="#case-studies" class="btn-void px-8 py-4 rounded-full font-syne font-bold text-xs tracking-ultra uppercase">
+                                Explore Case Studies
+                            </a>
+                            <a href="#achievement" class="btn-outline px-8 py-4 rounded-full font-syne font-bold text-xs tracking-ultra uppercase text-white light:text-black">
+                                View Achievement
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="relative w-full max-w-md aspect-[4/5] p-3 futuristic-frame rounded-3xl shadow-2xl group">
+                            <div class="corner-bracket top-3 left-3 border-t-2 border-l-2"></div>
+                            <div class="corner-bracket top-3 right-3 border-t-2 border-r-2"></div>
+                            <div class="corner-bracket bottom-3 left-3 border-b-2 border-l-2"></div>
+                            <div class="corner-bracket bottom-3 right-3 border-b-2 border-r-2"></div>
+
+                            <div class="w-full h-full rounded-2xl border border-white/10 light:border-black/10 relative overflow-hidden group">
+    <!-- Profile Image filling the container -->
+    <img src="a61d20d3-be92-40b7-9e00-e8755d7d9480.jpg" alt="Kennard Cleint M. Azarcon" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"><img src="a61d20d3-be92-40b7-9e00-e8755d7d9480.jpg" alt="Kennard Cleint M. Azarcon" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+    
+    <!-- Dark gradient overlay for text readability -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-white/10 light:via-black/10 to-transparent opacity-20 pointer-events-none animate-scanline"></div>
+
+    <!-- Text overlay at the bottom -->
+    <div class="absolute bottom-6 left-0 right-0 text-center px-4 z-10">
+        <div class="font-border-wide text-xs text-white tracking-wider uppercase mb-1">
+            KENNARD CLEINT M. AZARCON
+        </div>
+        <p class="text-[10px] font-mono text-neutral-400 max-w-xs mx-auto leading-relaxed uppercase">
+            [ FSUU CITEC BSIT 11 • Student ID: 26100000691 ]
+        </p>
+    </div>
+</div>
+                                <div class="absolute bottom-4 left-0 w-full text-center font-mono text-[9px] text-neutral-500 uppercase tracking-widest">
+                                    SYS.ID // K.C.M.AZARCON
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CASE STUDIES SECTION -->
+        <section id="case-studies" class="py-20 relative border-b border-white/10 light:border-black/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="flex items-center justify-between mb-12 border-b border-white/10 light:border-black/10 pb-6">
+                    <div>
+                        <span class="text-neutral-400 light:text-neutral-600 font-mono text-xs uppercase tracking-ultra">FEATURED WORK</span>
+                        <h2 class="text-3xl sm:text-5xl font-border-wide uppercase text-white light:text-black mt-1">
+                            Case Studies
+                        </h2>
+                    </div>
+                    <span class="font-mono text-xs text-neutral-500 uppercase tracking-widest hidden sm:block">
+                        [ 02 SELECTED PROJECTS ]
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <!-- Case Study 01 -->
+                    <div class="void-card rounded-3xl p-8 flex flex-col justify-between group">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between font-mono text-xs text-neutral-400 light:text-neutral-600">
+                                <span class="px-3 py-1 rounded-full bg-neutral-900 light:bg-neutral-200 text-white light:text-black font-bold">CASE STUDY 01</span>
+                                <span class="tracking-widest uppercase">BENCHMARKING</span>
+                            </div>
+                            <h3 class="text-2xl font-bold font-syne uppercase text-white light:text-black group-hover:underline">
+                                Autonomous Keyboard Speed Benchmarking App
+                            </h3>
+                            <p class="text-sm text-neutral-400 light:text-neutral-600 leading-relaxed font-sans">
+                                Directly inspired by the FSUU CITEC Keyboard Clash competition. A high-precision web platform measuring key latency, stroke duration, finger fatigue, and dynamic WPM fluctuations.
+                            </p>
+                            <div class="flex flex-wrap gap-2 pt-2 font-mono text-[11px]">
+                                <span class="px-3 py-1 rounded-lg bg-neutral-900 light:bg-neutral-200 border border-neutral-800 light:border-neutral-300">JavaScript ES6+</span>
+                                <span class="px-3 py-1 rounded-lg bg-neutral-900 light:bg-neutral-200 border border-neutral-800 light:border-neutral-300">DOM Analytics</span>
+                                <span class="px-3 py-1 rounded-lg bg-neutral-900 light:bg-neutral-200 border border-neutral-800 light:border-neutral-300">Tailwind CSS</span>
+                            </div>
+                        </div>
+                        <div class="pt-8">
+                            <button onclick="openModal('cs-keyboard')" class="btn-void w-full py-4 rounded-2xl font-syne font-bold text-xs tracking-widest uppercase flex items-center justify-center gap-2 cursor-pointer">
+                                INSPECT CASE STUDY <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Case Study 02 -->
+                    <div class="void-card rounded-3xl p-8 flex flex-col justify-between group">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between font-mono text-xs text-neutral-400 light:text-neutral-600">
+                                <span class="px-3 py-1 rounded-full bg-neutral-900 light:bg-neutral-200 text-white light:text-black font-bold">CASE STUDY 02</span>
+                                <span class="tracking-widest uppercase">Project 01</span>
+                            </div>
+                            <h3 class="text-2xl font-bold font-syne uppercase text-white light:text-black group-hover:underline">
+                                My Figma Project
+                            </h3>
+                            <p class="text-sm text-neutral-400 light:text-neutral-600 leading-relaxed font-sans">
+                                This is my own design of the Github color 
+                            </p>
+                            <div class="flex flex-wrap gap-2 pt-2 font-mono text-[11px]">
+                                <span class="px-3 py-1 rounded-lg bg-neutral-900 light:bg-neutral-200 border border-neutral-800 light:border-neutral-300">Node.js</span>
+                                <span class="px-3 py-1 rounded-lg bg-neutral-900 light:bg-neutral-200 border border-neutral-800 light:border-neutral-300">MySQL Database</span>
+                                <span class="px-3 py-1 rounded-lg bg-neutral-900 light:bg-neutral-200 border border-neutral-800 light:border-neutral-300">Tailwind CSS</span>
+                            </div>
+                        </div>
+                        <div class="pt-8">
+<a href="https://www.figma.com/design/dv3K8PJa8CYpD1HvebPxvG/design?node-id=0-1&p=f&t=ScxyFb61jpywCw2N-0" target="_blank" rel="noopener noreferrer" class="btn-void w-full py-4 rounded-2xl font-syne font-bold text-xs tracking-widest uppercase flex items-center justify-center gap-2">
+    INSPECT CASE STUDY <i class="fa-solid fa-arrow-right text-xs"></i>
+</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ACHIEVEMENT SPOTLIGHT SECTION -->
+        <section id="achievement" class="py-20 relative bg-void-pitch light:bg-neutral-100/80 border-b border-white/10 light:border-black/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+                
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="text-neutral-400 light:text-neutral-600 font-mono text-xs uppercase tracking-ultra">PODIUM RECOGNITION</span>
+                    <h2 class="text-3xl sm:text-5xl font-border-wide uppercase text-white light:text-black mt-2">
+                        Keyboard Clash 2nd Place
+                    </h2>
+                    <p class="text-neutral-400 light:text-neutral-600 text-sm font-mono mt-2">
+                        Father Saturnino Urios University • College of Information Technology, Entertainment, and Computing (CITEC)
+                    </p>
+                </div>
+
+                <div class="max-w-4xl mx-auto">
+                    <div class="void-card p-8 sm:p-12 rounded-3xl relative overflow-hidden border border-white/20 light:border-black/20">
+                        <div class="flex flex-col md:flex-row items-center gap-8 relative z-10">
+                            
+                            <div class="w-28 h-28 rounded-3xl bg-white light:bg-black text-black light:text-white flex-shrink-0 flex flex-col items-center justify-center p-4 shadow-2xl">
+                                <i class="fa-solid fa-trophy text-4xl mb-1"></i>
+                                <span class="text-[9px] font-mono font-bold tracking-widest uppercase">2ND PLACE</span>
+                            </div>
+
+                            <div class="space-y-3 text-center md:text-left flex-1">
+                                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-900 light:bg-neutral-200 text-white light:text-black text-xs font-mono">
+                                    <i class="fa-solid fa-keyboard"></i> FSUU CITEC DEPARTMENT COMPETITION • SEPTEMBER 2026
+                                </div>
+
+                                <h3 class="text-2xl sm:text-3xl font-extrabold font-syne uppercase text-white light:text-black leading-tight">
+                                    Silver Medalist • Speed Keyboard Typing
+                                </h3>
+
+                                <p class="text-neutral-300 light:text-neutral-700 text-sm leading-relaxed">
+                                    Representing the College of Information, Technology, Entertainment, and Computing, Kennard Cleint M. Azarcon earned <strong>2nd Place</strong> as a silver medalist in the competitive <em>Keyboard Clash</em> typing competition held in September 2026.
+                                </p>
+
+                                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 font-mono text-xs">
+                                    <div class="p-3 rounded-xl bg-black/60 light:bg-white border border-white/10 light:border-black/10">
+                                        <div class="text-neutral-400 light:text-neutral-500 text-[10px]">ORGANIZER</div>
+                                        <div class="font-bold text-white light:text-black mt-0.5">FSUU CITEC</div>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-black/60 light:bg-white border border-white/10 light:border-black/10">
+                                        <div class="text-neutral-400 light:text-neutral-500 text-[10px]">ACCURACY</div>
+                                        <div class="font-bold text-white light:text-black mt-0.5">Competitive WPM</div>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-black/60 light:bg-white border border-white/10 light:border-black/10 col-span-2 sm:col-span-1">
+                                        <div class="text-neutral-400 light:text-neutral-500 text-[10px]">STUDENT ID</div>
+                                        <div class="font-bold text-white light:text-black mt-0.5">26100000691</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SKILLS & TECH STACK SECTION -->
+        <section id="skills" class="py-20 bg-void-pitch light:bg-neutral-100 border-b border-white/10 light:border-black/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="text-neutral-400 light:text-neutral-600 font-mono text-xs uppercase tracking-ultra">BSIT 11 COMPETENCIES</span>
+                    <h2 class="text-3xl sm:text-4xl font-border-wide uppercase text-white light:text-black mt-1">
+                        Technical Stack
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <div class="void-card p-6 rounded-2xl">
+                        <i class="fa-solid fa-code text-2xl text-white light:text-black mb-3"></i>
+                        <h3 class="font-bold font-syne text-lg uppercase text-white light:text-black mb-2">Programming</h3>
+                        <ul class="space-y-2 text-xs font-mono text-neutral-400 light:text-neutral-600">
+                            <li>• JavaScript Type Coercion</li>
+                            <li>• Java Primitive Data Types</li>
+                            <li>• Python Syntax & Logic</li>
+                            <li>• HTML5 Canvas Elements</li>
+                        </ul>
+                    </div>
+
+                    <div class="void-card p-6 rounded-2xl">
+                        <i class="fa-solid fa-keyboard text-2xl text-white light:text-black mb-3"></i>
+                        <h3 class="font-bold font-syne text-lg uppercase text-white light:text-black mb-2">Speed Typing</h3>
+                        <ul class="space-y-2 text-xs font-mono text-neutral-400 light:text-neutral-600">
+                            <li>• Monkeytype & TypeRacer</li>
+                            <li>• Steno Keyboard Layouts</li>
+                            <li>• High WPM Metrics</li>
+                            <li>• Keyboard Clash Silver Medal</li>
+                        </ul>
+                    </div>
+
+                    <div class="void-card p-6 rounded-2xl">
+                        <i class="fa-solid fa-network-wired text-2xl text-white light:text-black mb-3"></i>
+                        <h3 class="font-bold font-syne text-lg uppercase text-white light:text-black mb-2">Systems & Hardware</h3>
+                        <ul class="space-y-2 text-xs font-mono text-neutral-400 light:text-neutral-600">
+                            <li>• Portable Raspberry Pi Linux</li>
+                            <li>• Mobile Server Administration</li>
+                            <li>• Network Security Auditing</li>
+                            <li>• HTTP Stateless Protocols</li>
+                        </ul>
+                    </div>
+
+                    <div class="void-card p-6 rounded-2xl">
+                        <i class="fa-solid fa-palette text-2xl text-white light:text-black mb-3"></i>
+                        <h3 class="font-bold font-syne text-lg uppercase text-white light:text-black mb-2">Creative UI & Design</h3>
+                        <ul class="space-y-2 text-xs font-mono text-neutral-400 light:text-neutral-600">
+                            <li>• Vintage Polaroid Filters</li>
+                            <li>• Interactive Web Animation</li>
+                            <li>• Tailwind CSS Styling</li>
+                            <li>• Custom Vehicle Decal UI</li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="py-20 relative">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                
+                <div class="void-card p-10 sm:p-16 rounded-3xl relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent pointer-events-none"></div>
+                    
+                    <span class="text-neutral-400 light:text-neutral-600 font-mono text-xs uppercase tracking-ultra">INITIATE CONTACT</span>
+                    <h2 class="text-3xl sm:text-5xl font-border-wide uppercase text-white light:text-black mt-2 mb-4">
+                        Let's Build Together
+                    </h2>
+                    <p class="text-neutral-400 light:text-neutral-600 text-sm font-mono max-w-xl mx-auto mb-8 uppercase">
+                        Father Saturnino Urios University • Butuan City, Philippines • BSIT Student Collaboration & Inquiries.
+                    </p>
+
+                    <div class="flex flex-wrap items-center justify-center gap-4">
+                        <a href="mailto:kennardazarcon@fsuu.edu.ph" class="btn-void px-8 py-4 rounded-full font-syne font-bold text-xs tracking-ultra uppercase flex items-center gap-2">
+                            <i class="fa-solid fa-envelope"></i> Send Email
+                        </a>
+                        <a href="https://github.com" target="_blank" class="btn-outline px-8 py-4 rounded-full font-syne font-bold text-xs tracking-ultra uppercase text-white light:text-black flex items-center gap-2">
+                            <i class="fa-brands fa-github"></i> GitHub Profile
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="py-8 border-t border-white/10 light:border-black/10 text-center font-mono text-xs text-neutral-500 uppercase tracking-widest">
+        <p>© 2026 Kennard Cleint M. Azarcon • FSUU CITEC BSIT 11. All Rights Reserved.</p>
+    </footer>
+
+    <!-- ==================== CASE STUDY MODALS ==================== -->
+    <div id="modal-backdrop" class="fixed inset-0 bg-black/80 backdrop-blur-md z-[99999] hidden flex items-center justify-center p-4">
+        
+        <!-- Modal Keyboard Case Study -->
+        <div id="modal-cs-keyboard" class="modal-content hidden max-w-3xl w-full void-card rounded-3xl p-6 sm:p-10 max-h-[90vh] overflow-y-auto relative border border-white/20 light:border-black/20">
+            <button onclick="closeModal()" class="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 light:bg-black/10 text-white light:text-black flex items-center justify-center hover:scale-110 transition-transform cursor-pointer">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <span class="px-3 py-1 rounded-full bg-neutral-900 light:bg-neutral-200 text-white light:text-black font-mono text-xs font-bold">CASE STUDY 01</span>
+            <h3 class="text-2xl sm:text-3xl font-bold font-syne uppercase text-white light:text-black mt-3 mb-4">
+                Autonomous Keyboard Speed Benchmarking App
+            </h3>
+
+            <div class="space-y-4 text-sm text-neutral-300 light:text-neutral-700 font-sans leading-relaxed">
+                <p>
+                    Inspired by competitive typing championships such as FSUU CITEC's <em>Keyboard Clash</em>, this project evaluates user typing telemetry down to the millisecond.
+                </p>
+                <h4 class="font-syne font-bold uppercase text-white light:text-black text-base pt-2">Key Engineering Metrics:</h4>
+                <ul class="list-disc pl-5 space-y-1 font-mono text-xs">
+                    <li>Real-time WPM & Accuracy calculation algorithms.</li>
+                    <li>Keypress duration & inter-key latency logging.</li>
+                    <li>Customizable testing passages for programming syntax and prose.</li>
+                </ul>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-white/10 light:border-black/10 flex justify-end">
+                <button onclick="closeModal()" class="btn-void px-6 py-3 rounded-xl font-syne font-bold text-xs uppercase cursor-pointer">Close Inspection</button>
+            </div>
+        </div>
+
+        <!-- Modal Campus Case Study -->
+        <div id="modal-cs-campus" class="modal-content hidden max-w-3xl w-full void-card rounded-3xl p-6 sm:p-10 max-h-[90vh] overflow-y-auto relative border border-white/20 light:border-black/20">
+            <button onclick="closeModal()" class="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 light:bg-black/10 text-white light:text-black flex items-center justify-center hover:scale-110 transition-transform cursor-pointer">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <span class="px-3 py-1 rounded-full bg-neutral-900 light:bg-neutral-200 text-white light:text-black font-mono text-xs font-bold">CASE STUDY 02</span>
+            <h3 class="text-2xl sm:text-3xl font-bold font-syne uppercase text-white light:text-black mt-3 mb-4">
+                FSUU CITEC Campus Event Management Portal
+            </h3>
+
+            <div class="space-y-4 text-sm text-neutral-300 light:text-neutral-700 font-sans leading-relaxed">
+                <p>
+                    A full-stack event portal engineered to streamline department gatherings, hackathons, and typing competitions within Father Saturnino Urios University.
+                </p>
+                <h4 class="font-syne font-bold uppercase text-white light:text-black text-base pt-2">System Architecture:</h4>
+                <ul class="list-disc pl-5 space-y-1 font-mono text-xs">
+                    <li>Node.js RESTful API backend handling student validation.</li>
+                    <li>MySQL relational database schema tracking attendance and scores.</li>
+                    <li>Responsive Tailwind CSS interface optimized for mobile and desktop screens.</li>
+                </ul>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-white/10 light:border-black/10 flex justify-end">
+                <button onclick="closeModal()" class="btn-void px-6 py-3 rounded-xl font-syne font-bold text-xs uppercase cursor-pointer">Close Inspection</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Custom JavaScript File -->
+    <script src="jah.js"></script>
+</body>
+</html>
